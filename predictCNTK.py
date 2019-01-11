@@ -42,8 +42,8 @@ out = C.softmax(z)
 
 
 predictions = out.eval({z.arguments[0]: features})
-predZ = z.eval({z.arguments[0]: features})
-print(predZ[0:5,:])
+#predZ = z.eval({z.arguments[0]: features})
+#print(predZ[0:5,:])
 
 predict_label = np.zeros((predictions.shape[0],1))
 sum = 0
