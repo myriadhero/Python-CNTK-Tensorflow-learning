@@ -16,7 +16,7 @@ hlayer_dim = 30
 trainSetPercent = 0.6 #60% for training
 
 
-data_scaling = 13000.0
+data_scaling = 13000.0 # toDo: change normalization method
 
 num_train_iter = 500
 epochs = 20
@@ -52,7 +52,7 @@ Ydata = np.zeros([dataShape[0],out_classes], dtype='float')
 
 # map classes to 'vectorised' form that the library takes ie:
 # if there are 3 classes, they need to be in the format of
-# 0 = [1, 0, 0]; 1 = [0, 1, 0], 3 = [0, 0, 1]
+# 0 = [1, 0, 0]; 1 = [0, 1, 0]; 2 = [0, 0, 1];...
 for x in range(dataShape[0]):
     Ydata[x, int(tempYdata[x])] = 1
 
@@ -83,9 +83,11 @@ feature = C.input_variable(input_dim)
 label = C.input_variable(out_classes)
 
 # Instantiate the feedforward classification model
+# toDo: implement a normalisation layer 
 
 my_model = C.layers.Sequential ([
                 Dense(hlayer_dim, activation=C.sigmoid),
+                Dense(hlayer_dim, activation=C.relu),
                 Dense(out_classes)])
 z = my_model(feature)
 
