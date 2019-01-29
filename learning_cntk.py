@@ -122,7 +122,6 @@ my_trainer.summarize_test_progress()
 print("\n error rate on an unseen minibatch %f \n" % avg_error)
 
 #this is a trained model for the data set
-
 model_output_file = "mModelZ1.dnn"
 z.save(model_output_file)
 

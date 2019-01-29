@@ -29,22 +29,15 @@ Ydata = XYdata[:,(dataShape[1]-1)]
 features = Xdata.astype(np.float32)
 labels = Ydata.astype(np.float32)
 
-#Xdata_eval = np.true_divide(Xdata[trainSamples:, :],13000.0)
-#Ydata_eval = Ydata[trainSamples:, :]
-#features = Xdata_train.astype(np.float32)
-
-feature = C.input_variable(input_dim)
-
+# load model
 model_file = "mModelZ1.dnn"
 z = C.load_model(model_file)
-out = C.softmax(z)
+out = C.softmax(z) # assigns probability based values
 
+# evaluate model, output predictions
+predictions = out.eval({out.arguments[0]: features})
 
-
-predictions = out.eval({z.arguments[0]: features})
-#predZ = z.eval({z.arguments[0]: features})
-#print(predZ[0:5,:])
-
+# assign class to each prediction
 predict_label = np.zeros((predictions.shape[0],1))
 sum = 0
 for row in range(predictions.shape[0]):

@@ -47,7 +47,7 @@ print("\n_______________________\n\nHello this is dog\n_______________________\n
 
 # input variables denoting the features and label data
 
-feature = C.input_variable(input_dim)
+feature = C.input_variable(input_dim) # C is CNTK
 label = C.input_variable(out_classes)
 
 # Instantiate the feedforward classification model
@@ -83,7 +83,7 @@ prog_printer = C.logging.ProgressPrinter(num_train_prog)
 
 # Instantiate the trainer object to drive the model training
 lr_schedule = C.learning_parameter_schedule(learning_rate, minibatch_size=num_mb_iter) #C.learners.IGNORE
-learner = C.sgd(z.parameters, lr_schedule)
+learner = C.sgd(z.parameters, lr_schedule) # stochastic gradient descent/minibatch descent
 trainer = C.Trainer(z, (loss, label_error), [learner], prog_printer)
 
 
